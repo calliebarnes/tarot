@@ -7,35 +7,38 @@ import (
 )
 
 type Card struct {
-	name        string
-	description string
-	meaning     string
+	name                string
+	description         string
+	meaning             string
+	reversedDescription string
+	reversedMeaning     string
+	reversed            bool
 }
 
 func createDeck() []Card {
 	deck := []Card{
-		{"The Fool", "A joyful puppy, excited to embark on a thrilling journey.", "Welcome new adventures with a curious and open heart. \nTrust the path and embrace life's surprises."},
-		{"The Magician", "A resourceful kitten, skillfully weaving its magic.", "Harness your inner abilities to manifest your dreams. \nUse your creativity to overcome obstacles."},
-		{"The High Priestess", "A perceptive owl, unveiling mysteries and hidden knowledge.", "Listen to your inner voice and trust your intuition. \nExplore the depths of your subconscious."},
-		{"The Empress", "A nurturing cat, showering her kittens with love and warmth.", "Cultivate self-love and care for others. \nIndulge in the beauty of life."},
-		{"The Emperor", "A commanding dog, confidently ruling over its domain.", "Assert your authority and create order. \nStand firm in your decisions and lead with integrity."},
-		{"The Hierophant", "A scholarly owl, imparting wisdom and guidance.", "Seek knowledge from mentors and traditions. \nEmbrace the teachings of the wise."},
-		{"The Lovers", "Two smitten kittens, their love radiating like a beacon.", "Follow your heart and stay true to yourself. \nCherish deep connections and shared values."},
-		{"The Chariot", "A brave lion, charging ahead with unwavering determination.", "Focus your energy and conquer your goals. \nDisplay courage and self-discipline in your pursuits."},
-		{"Strength", "A gentle lioness, her fierce heart protecting her cubs.", "Face challenges with inner strength and compassion. \nTrust your instincts and embrace your power."},
-		{"The Hermit", "A contemplative owl, seeking solitude and inner wisdom.", "Turn inward and reflect on your life's journey. \nFind clarity through introspection and self-discovery."},
-		{"Wheel of Fortune", "A playful kitten, spinning the wheel and trusting fate.", "Embrace life's cycles and trust the flow of destiny. \nAcknowledge the role of chance in your path."},
-		{"Justice", "A discerning owl, weighing every decision with fairness.", "Act with integrity and seek the truth. \nStay objective and consider all perspectives."},
-		{"The Hanged Man", "A tranquil sloth, seeing the world from a unique angle.", "Pause and reevaluate your situation. \nEmbrace alternative viewpoints and be receptive to change."},
-		{"Death", "An awe-inspiring phoenix, rising anew from its own ashes.", "Let go of the past and welcome transformation. \nEmbrace growth and seize fresh opportunities."},
-		{"Temperance", "A harmonious owl, blending diverse elements with grace.", "Strive for balance and moderation in all aspects of life. \nCultivate patience and adaptability."},
-		{"The Devil", "A cunning raccoon, a reminder of life's temptations.", "Beware of distractions and unhealthy desires. \nPractice self-awareness and resist overindulgence."},
-		{"The Tower", "Resilient birds, rebuilding their nest after turbulent winds.", "Accept change and face unexpected challenges. \nAdapt to new circumstances with an open mind."},
-		{"The Star", "A luminous firefly, a beacon of hope in the darkness.", "Believe in yourself and reach for the stars. \nFind inspiration in your dreams and aspirations."},
-		{"The Moon", "An enchanting wolf, howling at the moon, awakening your inner mystic.", "Trust your intuition and delve into the unknown. \nEmbrace your authentic self and seek hidden truths."},
-		{"The Sun", "A vibrant sunflower, basking in the golden light of life.", "Celebrate joy and warmth in all aspects of existence. \nWelcome new opportunities with a radiant spirit."},
-		{"Judgement", "A trumpeting elephant, heralding rebirth and renewal.", "Embrace change and be open to growth. \nEvaluate your choices and forge a new path with clarity."},
-		{"The World", "A thriving earthworm, connecting all life in a harmonious cycle.", "Acknowledge the interconnectedness of all beings. \nEmbrace unity and embark on a new chapter of life."},
+		{"The Fool", "A joyful puppy, excited to embark on a thrilling journey.", "Welcome new adventures with a curious and open heart. \nTrust the path and embrace life's surprises.", "A foolish puppy, unaware of the dangers ahead.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The Magician", "A resourceful kitten, skillfully weaving its magic.", "Harness your inner abilities to manifest your dreams. \nUse your creativity to overcome obstacles.", "A mischievous kitten, playing tricks and causing mischief.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The High Priestess", "A perceptive owl, unveiling mysteries and hidden knowledge.", "Listen to your inner voice and trust your intuition. \nExplore the depths of your subconscious.", "A secretive owl, concealing its wisdom from the world.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The Empress", "A nurturing cat, showering her kittens with love and warmth.", "Cultivate self-love and care for others. \nIndulge in the beauty of life.", "A neglectful cat, abandoning her kittens to fend for themselves.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The Emperor", "A commanding dog, confidently ruling over its domain.", "Assert your authority and create order. \nStand firm in your decisions and lead with integrity.", "A tyrannical dog, abusing its power and authority.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The Hierophant", "A scholarly owl, imparting wisdom and guidance.", "Seek knowledge from mentors and traditions. \nEmbrace the teachings of the wise.", "A rebellious owl, rejecting the status quo and challenging authority.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The Lovers", "Two smitten kittens, their love radiating like a beacon.", "Follow your heart and stay true to yourself. \nCherish deep connections and shared values.", "Two heartbroken kittens, their love torn apart by conflict.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The Chariot", "A brave lion, charging ahead with unwavering determination.", "Focus your energy and conquer your goals. \nDisplay courage and self-discipline in your pursuits.", "A reckless lion, charging ahead without caution.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"Strength", "A gentle lioness, her fierce heart protecting her cubs.", "Face challenges with inner strength and compassion. \nTrust your instincts and embrace your power.", "A timid lioness, her fierce heart cowering in fear.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The Hermit", "A contemplative owl, seeking solitude and inner wisdom.", "Turn inward and reflect on your life's journey. \nFind clarity through introspection and self-discovery.", "A lonely owl, shunning the world and its distractions.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"Wheel of Fortune", "A playful kitten, spinning the wheel and trusting fate.", "Embrace life's cycles and trust the flow of destiny. \nAcknowledge the role of chance in your path.", "A mischievous kitten, spinning the wheel and causing chaos.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"Justice", "A discerning owl, weighing every decision with fairness.", "Act with integrity and seek the truth. \nStay objective and consider all perspectives.", "A biased owl, favoring one side over the other.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The Hanged Man", "A tranquil sloth, seeing the world from a unique angle.", "Pause and reevaluate your situation. \nEmbrace alternative viewpoints and be receptive to change.", "A restless sloth, unable to find peace and contentment.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"Death", "An awe-inspiring phoenix, rising anew from its own ashes.", "Let go of the past and welcome transformation. \nEmbrace growth and seize fresh opportunities.", "A fearful phoenix, unable to overcome its own fears.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"Temperance", "A harmonious owl, blending diverse elements with grace.", "Strive for balance and moderation in all aspects of life. \nCultivate patience and adaptability.", "A chaotic owl, unable to find harmony in its surroundings.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The Devil", "A cunning raccoon, a reminder of life's temptations.", "Beware of distractions and unhealthy desires. \nPractice self-awareness and resist overindulgence.", "A playful raccoon, unable to resist its temptations.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The Tower", "Resilient birds, rebuilding their nest after turbulent winds.", "Accept change and face unexpected challenges. \nAdapt to new circumstances with an open mind.", "A fearful bird, unable to face the storm.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The Star", "A luminous firefly, a beacon of hope in the darkness.", "Believe in yourself and reach for the stars. \nFind inspiration in your dreams and aspirations.", "A lonely firefly, unable to find its way in the darkness.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The Moon", "An enchanting wolf, howling at the moon, awakening your inner mystic.", "Trust your intuition and delve into the unknown. \nEmbrace your authentic self and seek hidden truths.", "A fearful wolf, howling at the moon, unable to face its inner demons.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The Sun", "A vibrant sunflower, basking in the golden light of life.", "Celebrate joy and warmth in all aspects of existence. \nWelcome new opportunities with a radiant spirit.", "A wilted sunflower, unable to find joy in life.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"Judgement", "A trumpeting elephant, heralding rebirth and renewal.", "Embrace change and be open to growth. \nEvaluate your choices and forge a new path with clarity.", "A fearful elephant, unable to face the unknown.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
+		{"The World", "A thriving earthworm, connecting all life in a harmonious cycle.", "Acknowledge the interconnectedness of all beings. \nEmbrace unity and embark on a new chapter of life.", "A lonely earthworm, unable to find its place in the world.", "Be mindful of your actions and avoid reckless behavior. \nTake time to reflect on your decisions.", false},
 	}
 	return deck
 }
@@ -45,6 +48,10 @@ func shuffleDeck(deck []Card) {
 	rand.Shuffle(len(deck), func(i, j int) {
 		deck[i], deck[j] = deck[j], deck[i]
 	})
+
+	for i := range deck {
+		deck[i].reversed = rand.Intn(2) == 1
+	}
 }
 
 func drawCards(deck []Card, n int) []Card {
@@ -59,8 +66,15 @@ func main() {
 
 	for _, card := range drawnCards {
 		fmt.Println(card.name)
-		fmt.Println(card.description)
-		fmt.Println()
-		fmt.Println(card.meaning)
+		if card.reversed {
+			fmt.Println("Reversed")
+			fmt.Println(card.reversedDescription)
+			fmt.Println()
+			fmt.Println(card.reversedMeaning)
+		} else {
+			fmt.Println(card.description)
+			fmt.Println()
+			fmt.Println(card.meaning)
+		}
 	}
 }
