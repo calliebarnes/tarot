@@ -61,20 +61,26 @@ func drawCards(deck []Card, n int) []Card {
 func main() {
 	deck := createDeck()
 	shuffleDeck(deck)
-	numCardsToDraw := 1
+	numCardsToDraw := 3
 	drawnCards := drawCards(deck, numCardsToDraw)
 
 	for _, card := range drawnCards {
+		fmt.Println("- - - - - - - - - - - - - - - - - - - - - - - - - -")
+		fmt.Println()
 		fmt.Println(card.name)
 		if card.reversed {
 			fmt.Println("Reversed")
 			fmt.Println(card.reversedDescription)
 			fmt.Println()
 			fmt.Println(card.reversedMeaning)
+			fmt.Println()
+			fmt.Println("- - - - - - - - - - - - - - - - - - - - - - - - - -")
 		} else {
 			fmt.Println(card.description)
 			fmt.Println()
 			fmt.Println(card.meaning)
+			fmt.Println()
+			fmt.Println("- - - - - - - - - - - - - - - - - - - - - - - - - -")
 		}
 	}
 }
