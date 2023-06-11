@@ -54,15 +54,17 @@ func shuffleDeck(deck []Card) {
 	}
 }
 
-func drawCards(deck []Card, n int) []Card {
-	return deck[:n]
+func drawCards(deck *[]Card, n int) []Card {
+	drawnCards := (*deck)[:n]
+	*deck = (*deck)[:n]
+	return drawnCards
 }
 
 func main() {
 	deck := createDeck()
 	shuffleDeck(deck)
 	numCardsToDraw := 3
-	drawnCards := drawCards(deck, numCardsToDraw)
+	drawnCards := drawCards(&deck, numCardsToDraw)
 
 	for _, card := range drawnCards {
 		fmt.Println("- - - - - - - - - - - - - - - - - - - - - - - - - -")
@@ -74,13 +76,12 @@ func main() {
 			fmt.Println()
 			fmt.Println(card.reversedMeaning)
 			fmt.Println()
-			fmt.Println("- - - - - - - - - - - - - - - - - - - - - - - - - -")
 		} else {
 			fmt.Println(card.description)
 			fmt.Println()
 			fmt.Println(card.meaning)
 			fmt.Println()
-			fmt.Println("- - - - - - - - - - - - - - - - - - - - - - - - - -")
 		}
+		fmt.Println("- - - - - - - - - - - - - - - - - - - - - - - - - -")
 	}
 }
