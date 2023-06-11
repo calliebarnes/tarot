@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"errors"
 	"math/rand"
 	"time"
 )
@@ -54,17 +55,25 @@ func shuffleDeck(deck []Card) {
 	}
 }
 
-func drawCards(deck *[]Card, n int) []Card {
+func drawCards(deck *[]Card, n int) ([]Card, error) {
+	if n > len(*deck) {
+		return nil, errors.New(fmt.Sprintf("Cannot draw %d cards. Only %d cards left in the deck.", n, len(*deck)))
+	}
 	drawnCards := (*deck)[:n]
 	*deck = (*deck)[:n]
-	return drawnCards
+	return drawnCards, nil
 }
 
 func main() {
 	deck := createDeck()
 	shuffleDeck(deck)
 	numCardsToDraw := 3
-	drawnCards := drawCards(&deck, numCardsToDraw)
+	drawnCards, err := drawCards(&deck, numCardsToDraw)
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	for _, card := range drawnCards {
 		fmt.Println("- - - - - - - - - - - - - - - - - - - - - - - - - -")
