@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"errors"
+	"fmt"
 	"math/rand"
 	"time"
 )
@@ -19,7 +19,7 @@ type Card struct {
 func createDeck() []Card {
 	deck := []Card{
 		{"The Fool", "A joyful puppy, excited to embark on a thrilling journey.", "Welcome new adventures with a curious and open heart. \nTrust the path and embrace life's surprises.", "A foolish puppy, unaware of the dangers ahead.", "Be cautious, you might be heading towards a pitfall unknowingly.", false},
-		{"The Magician", "A resourceful kitten, skillfully weaving its magic.", "Harness your inner abilities to manifest your dreams. \nUse your creativity to overcome obstacles.", "A mischievous kitten, playing tricks and causing mischief.",  "Beware of manipulation, and remember to use your talents wisely.", false},
+		{"The Magician", "A resourceful kitten, skillfully weaving its magic.", "Harness your inner abilities to manifest your dreams. \nUse your creativity to overcome obstacles.", "A mischievous kitten, playing tricks and causing mischief.", "Beware of manipulation, and remember to use your talents wisely.", false},
 		{"The High Priestess", "A perceptive owl, unveiling mysteries and hidden knowledge.", "Listen to your inner voice and trust your intuition. \nExplore the depths of your subconscious.", "A secretive owl, concealing its wisdom from the world.", "Don't ignore your intuition, strive to regain your personal harmony.", false},
 		{"The Empress", "A nurturing cat, showering her kittens with love and warmth.", "Cultivate self-love and care for others. \nIndulge in the beauty of life.", "A neglectful cat, abandoning her kittens to fend for themselves.", "Take care not to neglect self-care or become overly dependent on others.", false},
 		{"The Emperor", "A commanding dog, confidently ruling over its domain.", "Assert your authority and create order. \nStand firm in your decisions and lead with integrity.", "A tyrannical dog, abusing its power and authority.", "Avoid misuse of power and control. \nTry not to become an authoritarian.", false},
@@ -40,6 +40,20 @@ func createDeck() []Card {
 		{"The Sun", "A vibrant sunflower, basking in the golden light of life.", "Celebrate joy and warmth in all aspects of existence. \nWelcome new opportunities with a radiant spirit.", "A wilted sunflower, unable to find joy in life.", "Feeling down can be a sign of necessary change. \nRemember that success is within your reach.", false},
 		{"Judgement", "A trumpeting elephant, heralding rebirth and renewal.", "Embrace change and be open to growth. \nEvaluate your choices and forge a new path with clarity.", "A fearful elephant, unable to face the unknown.", "Don't avoid self-examination. \nSelf-awareness is key to overcoming fear of change.", false},
 		{"The World", "A thriving earthworm, connecting all life in a harmonious cycle.", "Acknowledge the interconnectedness of all beings. \nEmbrace unity and embark on a new chapter of life.", "A lonely earthworm, unable to find its place in the world.", "Strive for completion in all things. \nFeeling disjointed or failing to achieve your goals can be signs of needed change.", false},
+		{"Ace of Cups", "A jubilant dolphin, arcing gracefully above a shimmering sea, surrounded by sparkling droplets.", "Embrace budding emotions. Love, creativity, and fresh connections are blossoming.", "A dolphin trapped in a tight lagoon, longing for the open ocean.", "Explore your feelings deeply; potential emotional connections might be overlooked.", false},
+		{"Two of Cups", "Two swans, their necks forming a heart against the backdrop of a radiant sunset.", "Nurture mutual bonds. A time of deepening relationships and heart-to-heart connections is at hand.", "Two swans, backs to each other, floating under a gloomy sky.", "Rekindle communication; differences need understanding and patience.", false},
+		{"Three of Cups", "Three playful otters, linking paws and swirling in joyous dance upon shimmering waters.", "Relish shared moments. Celebrations, reunions, and collective triumphs await.", "Three otters, each facing away, lost in individual thoughts.", "Seek unity; cherish shared values and memories to maintain harmony.", false},
+		{"Four of Cups", "A contemplative panda, seated beneath a tree, unaware of a radiant cup hovering nearby.", "Opportunities beckon. Ponder deeply, but remain receptive to external offers.", "A panda fixated on a tarnished cup, ignoring three golden ones.", "Broaden your horizon; variety and new experiences might hold unexpected joys.", false},
+		{"Five of Cups", "A forlorn raccoon, gazing at toppled cups, the spilled liquid shimmering under moonlight.", "Reflect on past losses, but look ahead. Lessons learned pave the way for future gains.", "A raccoon overwhelmed by shadows, blind to the standing cups.", "Focus on healing and perspective; dwelling too much on past regrets hinders growth.", false},
+		{"Six of Cups", "Joyful kittens, tumbling amidst vibrant flowers, reminiscent of carefree days.", "Rekindle childhood memories. Familiar faces and places offer comfort and insight.", "Kittens amidst withered blooms, lost in sepia-toned memories.", "Balance past joys with present realities. Over-nostalgia might cloud current joys.", false},
+		{"Seven of Cups", "A mesmerized fox, gazing at a sky filled with vivid, dreamlike visions.", "Let imagination run wild, but discern dreams from reality. Infinite possibilities beckon.", "A fox, dizzied amidst a fog of illusions, struggling to focus.", "Stay grounded; every shimmering prospect might not align with your true path.", false},
+		{"Eight of Cups", "A determined turtle, forging ahead, leaving familiar shores for mysterious horizons.", "Pursue deeper meaning. Some journeys require leaving the known behind.", "A turtle hesitating, gazing longingly back at past comforts.", "Seek progress; venturing beyond the familiar can unveil hidden treasures.", false},
+		{"Nine of Cups", "A proud cat lounging amidst a bounty of overflowing, radiant cups.", "Savor the fruits of your labor. A time of contentment and personal fulfillment draws near.", "A cat, possessive of its hoard, wary of sharing.", "True joy often lies in sharing. Embrace generosity and avoid becoming too insular.", false},
+		{"Ten of Cups", "Birds in harmonious flight, painting arcs of joy against a rainbow sky.", "Cherish shared happiness. Familial and communal bonds offer unparalleled joy.", "Birds silhouetted against gathering storm clouds, discord evident.", "Navigate misunderstandings; shared aspirations and mutual understanding will clear the air.", false},
+		{"Page of Cups", "A curious seal, balancing a radiant cup on its nose, bubbles of wonder around.", "Embrace new emotional insights. Let your intuition and dreams guide you.", "A seal, puzzled, watching its cup teeter.", "Dive into unfamiliar feelings. Hidden depths offer profound understanding.", false},
+		{"Knight of Cups", "A majestic heron, bearing a gleaming cup, soars towards dreamy horizons.", "Chase heartfelt desires. Passion and romance guide you, but ensure you remain anchored.", "A heron, drifting aimlessly, cup spilled.", "Direct your emotional energies with intent. Beware of becoming too whimsical or flighty.", false},
+		{"Queen of Cups", "A graceful deer, standing by a serene pond, the moon's reflection in a radiant cup.", "Nurture emotional depths. Your empathy and intuition are powerful allies.", "A startled deer, its reflection distorted in rippled waters.", "Stay centered amidst emotional tides. Inner calm offers clarity amidst chaos.", false},
+		{"King of Cups", "A wise bear, seated majestically, balancing a chalice amidst turbulent waters.", "Master your emotions. Lead with compassion, blending intellect with heart.", "A bear, perturbed, its cup tilting amidst stormy waves.", "Cultivate inner equilibrium. External storms require a steady heart and clear mind.", false},
 	}
 	return deck
 }
